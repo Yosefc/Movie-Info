@@ -5,6 +5,36 @@ const router = express.Router();
 
 const API_KEY = process.env.OMDB_API_KEY;
 
+router.get("/movies/current_year", async (req, res) => {
+  const titles = [
+    "one",
+    "blood",
+    "private",
+    "eye",
+    "star",
+    "red",
+    "bad",
+    "dead",
+    "private",
+    "killer",
+    "little",
+    "black"
+  ];
+  try {
+    const date = new Date();
+    const current_year = date.getFullYear();
+    const response = await axios.get(
+      `http://www.omdbapi.com/?s=${
+        titles[Math.floor(Math.random() * titles.length)]
+      }&y=${current_year}&apikey=${API_KEY}`
+    );
+    res.status(200).send(response.data);
+  } catch (error) {
+    console.log({ error });
+    res.status(500).send("Unable to connect to server...");
+  }
+});
+
 router.get("/movie/movie_id=:movie_id", async (req, res) => {
   try {
     const { movie_id } = req.params;
