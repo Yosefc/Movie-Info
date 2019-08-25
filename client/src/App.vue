@@ -25,8 +25,14 @@ export default {
   padding: 0;
 }
 
+body {
+  color: white;
+  background-color: black;
+}
+
 .container {
   width: 85vw;
   margin: auto;
+  min-height: 50vh;
 }
 </style>
