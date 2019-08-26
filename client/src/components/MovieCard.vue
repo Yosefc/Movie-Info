@@ -5,7 +5,7 @@
     <h1 class="cards-header">Movies from {{current_year}}</h1>
     <div class="cards">
       <div class="card" v-for="movie in movieList" :key="movie.imdbID">
-        <router-link :to="movie.imdbID">
+        <router-link :to="`/movie/${movie.imdbID}`">
           <div class="img-container">
             <img :src="doeasMovieHavePoster(movie.Poster)" alt="Movie Poster" />
           </div>
