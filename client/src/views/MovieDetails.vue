@@ -33,11 +33,8 @@ export default {
   created: async function() {
     try {
       const res = await axios.get(`/api/movie/movie_id=${this.movieID}`);
-      // console.log("res app: ", res.data);
-      // console.log("from com: ", `/api/movie/movie_id=${this.movieID}`);
       this.movieDetails = res.data;
     } catch (error) {
-      console.log({ error });
       this.movieDetails = error;
     }
   }
