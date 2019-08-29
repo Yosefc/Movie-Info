@@ -154,7 +154,16 @@ svg {
   display: flex;
   overflow: hidden;
   width: 100%;
-  cursor: grabbing;
+  animation: grabber 1s infinite;
+}
+
+@keyframes grabber {
+  from {
+    cursor: grabbing;
+  }
+  to {
+    cursor: grab;
+  }
 }
 
 .cards-small {
@@ -184,7 +193,6 @@ svg {
   border-radius: 50px;
   padding-top: 5px;
   box-shadow: 0 0 6px rgba(198, 198, 223, 0.4);
-  text-overflow: ellipsis;
 }
 
 .card a {
@@ -201,5 +209,13 @@ svg {
 .img-container {
   width: 300px;
   height: 250px;
+}
+
+.movie-title {
+  max-width: 280px;
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
