@@ -13,7 +13,7 @@
       </svg>
     </div>
     <h1 class="cards-header">Movies from {{current_year}}</h1>
-    <div :class="movieList.length > 5 ? 'cards' : 'cards'">
+    <div :class="movieList.length <= 5 ? 'cards-auto cards' : 'cards'">
       <div class="card" v-for="movie in movieList" :key="movie.imdbID">
         <router-link :to="`/movie/${movie.imdbID}`" @click.native.prevent>
           <div class="img-container">
@@ -166,12 +166,6 @@ svg {
   }
 }
 
-.cards-small {
-  display: flex;
-  overflow: visible;
-  width: 100%;
-}
-
 .cards-header {
   margin-bottom: 15px;
 }
@@ -217,5 +211,22 @@ svg {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 1900px) {
+  .cards-auto {
+    flex-basis: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+    animation: none;
+  }
 }
 </style>

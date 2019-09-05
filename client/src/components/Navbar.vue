@@ -13,6 +13,11 @@
         :to="link.to"
       >{{link.name}}</router-link>
     </nav>
+    <div class="mobile-navbar">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </header>
 </template>
 
@@ -46,6 +51,10 @@ header {
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+.mobile-navbar {
+  display: none;
 }
 
 .nav-item {
@@ -85,5 +94,33 @@ header {
 
 #movie-search-btn:focus {
   box-shadow: 0 0 6px yellow;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    font-size: 0.85rem;
+  }
+
+  #search-box {
+    width: 80%;
+    height: 20px;
+  }
+
+  .mobile-navbar {
+    display: block;
+    cursor: pointer;
+  }
+
+  .mobile-navbar span {
+    display: block;
+    width: 16px;
+    height: 3px;
+    background-color: white;
+    margin: 2px 1px;
+  }
+
+  .nav-item {
+    display: none;
+  }
 }
 </style>
