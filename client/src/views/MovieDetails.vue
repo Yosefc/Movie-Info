@@ -9,6 +9,9 @@
     <div v-show="!loading" :class="`movie-details ${loaded ? 'show' : 'hide'}`">
       <div class="img-container">
         <img :src="doesMovieHavePoster(movieDetails.Poster)" :alt="`${movieDetails.Title} poster`" />
+        <router-link to="/">
+          <button type="button" class="back-botton">Back</button>
+        </router-link>
       </div>
       <div class="movie-info">
         <span class="movie-tile">
@@ -162,6 +165,22 @@ export default {
   max-width: 200px;
   margin: 0;
   object-fit: contain;
+}
+
+.back-botton {
+  border: none;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  width: 50%;
+  height: 10%;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.back-botton a {
+  text-decoration: none;
+  color: black;
 }
 
 .movie-info {
