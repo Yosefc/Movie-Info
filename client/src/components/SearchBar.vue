@@ -1,9 +1,32 @@
 <template>
   <div class="form">
-    <input type="text" name id="search-box" />
-    <input type="submit" id="movie-search-btn" value="Go" />
+    <input
+      type="text"
+      id="search-box"
+      placeholder="Search Titles"
+      v-model="searchValue"
+      v-on:keyup.enter="search"
+    />
+    <input type="submit" id="movie-search-btn" value="Go" v-on:click="search" />
   </div>
 </template>
+
+<script>
+export default {
+  name: "SearchBar",
+  data: () => {
+    return {
+      searchValue: ""
+    };
+  },
+  methods: {
+    search: function() {
+      this.$router.push(`/search/${this.searchValue}`);
+      this.searchValue = "";
+    }
+  }
+};
+</script>
 
 <style scoped>
 .form {

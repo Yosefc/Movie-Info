@@ -25,6 +25,11 @@ export default new Router({
       path: "/movie/:movieID",
       name: "MovieDetails",
       component: () => import("./views/MovieDetails.vue")
+    },
+    {
+      path: "/search/:searchValue",
+      name: "SearchResults",
+      component: () => import("./views/SearchResults.vue")
     }
   ]
 });
