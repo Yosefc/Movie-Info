@@ -9,14 +9,8 @@
       </div>
     </main>
     <div class="pagination">
-      <ul
-        v-for="page in pagination.length > 10 ? pagination.slice(pageSelection-1, selectedPage+14) : pagination"
-        :key="page"
-      >
-        <li
-          v-on:click="nextPage(page), selectedPage = page"
-          :class="{active:page == selectedPage}"
-        >{{page}}</li>
+      <ul v-for="page in maxSelectedPage " :key="page">
+        <li v-on:click="nextPage(page)" :class="{active:page == selectedPage}">{{page}}</li>
       </ul>
     </div>
   </div>
@@ -60,6 +54,29 @@ export default {
         return this.selectedPage - 1;
       }
       return this.selectedPage;
+    },
+    maxSelectedPage: function() {
+      if (this.results.totalResults) {
+        const numOfPagesToShow = 14;
+        const pagesShownLength = this.pagination.slice(this.pageSelection - 1)
+          .length;
+
+        if (pagesShownLength < numOfPagesToShow) {
+          return this.pagination.slice(
+            Math.max(this.pagination.length - 15, 1)
+          );
+        }
+
+        if (this.pagination.length > 10) {
+          return this.pagination.slice(
+            this.pageSelection - 1,
+            this.selectedPage + numOfPagesToShow - 1
+          );
+        }
+
+        return this.pagination;
+      }
+      return null;
     }
   },
   methods: {
@@ -78,6 +95,7 @@ export default {
         `/api/search/title/title=${this.$route.params.searchValue}&page=${page}`
       );
       this.results = res.data;
+      this.selectedPage = page;
     }
   }
 };
