@@ -10,7 +10,7 @@
     </main>
     <div class="pagination">
       <ul
-        v-for="page in availablePages.length > 10 ? availablePages.slice(pageSelection-1, selectedPage+14) : availablePages"
+        v-for="page in pagination.length > 10 ? pagination.slice(pageSelection-1, selectedPage+14) : pagination"
         :key="page"
       >
         <li
@@ -43,18 +43,17 @@ export default {
   },
   computed: {
     pagination: function() {
+      const pages = [];
       const { totalResults } = this.results;
+      const totalPages = Math.ceil(parseInt(totalResults) / 10);
+
       if (totalResults) {
-        return Math.ceil(parseInt(totalResults) / 10);
+        for (let pageNum = 1; pageNum < totalPages; pageNum++) {
+          pages.push(pageNum);
+        }
+        return pages;
       }
       return 1;
-    },
-    availablePages: function() {
-      const pages = [];
-      for (let index = 1; index < this.pagination; index++) {
-        pages.push(index);
-      }
-      return pages;
     },
     pageSelection: function() {
       if (this.selectedPage > 1) {
