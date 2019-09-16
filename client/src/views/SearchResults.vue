@@ -4,6 +4,7 @@
       <div class="title">
         <h1>Showing results for "{{$route.params.searchValue}}"</h1>
       </div>
+      <h2 class="no-results" v-if="error">{{error}}</h2>
       <div class="results" v-for="result in results.Search" :key="result.imdbID">
         <h2>{{result.Title}}</h2>
       </div>
@@ -24,7 +25,8 @@ export default {
   data: () => {
     return {
       results: [],
-      selectedPage: 1
+      selectedPage: 1,
+      error: ""
     };
   },
   created: async function() {
@@ -87,7 +89,7 @@ export default {
         );
         this.results = res.data;
       } catch (error) {
-        this.results = error;
+        this.error = error.response.data;
       }
     },
     nextPage: async function(page) {
