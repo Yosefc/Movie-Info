@@ -9,9 +9,7 @@
     <div v-show="!loading" :class="`movie-details ${loaded ? 'show' : 'hide'}`">
       <div class="img-container">
         <img :src="doesMovieHavePoster(movieDetails.Poster)" :alt="`${movieDetails.Title} poster`" />
-        <router-link to="/">
-          <button type="button" class="back-botton">Back</button>
-        </router-link>
+        <button type="button" class="back-botton" @click="$router.go(-1)">Back</button>
       </div>
       <div class="movie-info">
         <span class="movie-tile">
