@@ -5,8 +5,16 @@
         <h1>Showing results for "{{$route.params.searchValue}}"</h1>
       </div>
       <h2 class="no-results" v-if="error">{{error}}</h2>
-      <div class="results" v-for="result in results.Search" :key="result.imdbID">
-        <h2>{{result.Title}}</h2>
+      <div class="results">
+        <div class="result" v-for="result in results.Search" :key="result.imdbID">
+          <router-link :to="`/movie/${result.imdbID}`">
+            <div class="img-container">
+              <img :src="result.Poster" :alt="result.Title + 'Poster'" />
+            </div>
+            <h2>{{result.Title}}</h2>
+            <span>- ({{result.Year}})</span>
+          </router-link>
+        </div>
       </div>
     </main>
     <div class="pagination">
@@ -113,10 +121,75 @@ main {
   min-height: 50vh;
 }
 
+.title {
+  text-align: center;
+  margin: 10px;
+  position: relative;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  display: block;
+  width: 25%;
+  height: 2px;
+  margin-top: 5px;
+  background-color: white;
+}
+
+.no-results {
+  text-align: center;
+  margin-top: 15%;
+}
+
+.results {
+  margin: 25px 0px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: -ms-flexbox;
+  -ms-flex-wrap: wrap;
+}
+
+.result {
+  text-align: center;
+  padding: 15px 15px 5px 15px;
+  font-size: 0.9rem;
+  width: 400px;
+  overflow-wrap: break-word;
+}
+
+.result h2 {
+  margin: 5px 0px 0px 0px;
+}
+
+.result a {
+  text-decoration: none;
+  color: white;
+}
+
+.result a:hover {
+  color: rgba(119, 119, 175, 0.7);
+}
+
+.img-container {
+  height: 400px;
+  width: 300px;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+  margin: auto;
+}
+
 .pagination {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 25px;
 }
 
 .pagination li {
