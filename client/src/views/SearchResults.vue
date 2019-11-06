@@ -9,7 +9,7 @@
         <div class="result" v-for="result in results.Search" :key="result.imdbID">
           <router-link :to="`/movie/${result.imdbID}`">
             <div class="img-container">
-              <img :src="result.Poster" :alt="result.Title + 'Poster'" />
+              <img :src="doesMovieHavePoster(result.Poster)" :alt="result.Title + 'Poster'" />
             </div>
             <h2>{{result.Title}}</h2>
             <span>- ({{result.Year}})</span>
@@ -27,6 +27,7 @@
 
 <script>
 import axios from "axios";
+import CheckPoster from "../methods/CheckPoster";
 
 export default {
   name: "SearchResults",
@@ -106,6 +107,12 @@ export default {
       );
       this.results = res.data;
       this.selectedPage = page;
+    },
+    doesMovieHavePoster: function(poster) {
+      return CheckPoster(
+        poster,
+        `${window.location.origin}/poster-placeholder.jpg`
+      );
     }
   }
 };

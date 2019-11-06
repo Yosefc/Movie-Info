@@ -39,6 +39,7 @@
 
 <script>
 import axios from "axios";
+import CheckPoster from "../methods/CheckPoster";
 
 export default {
   name: "MovieDetails",
@@ -63,10 +64,10 @@ export default {
   },
   methods: {
     doesMovieHavePoster: function(poster) {
-      if (poster) {
-        return poster.match(/http/) ? poster : this.placeholder;
-      }
-      return null;
+      return CheckPoster(
+        poster,
+        `${window.location.origin}/poster-placeholder.jpg`
+      );
     }
   },
   computed: {

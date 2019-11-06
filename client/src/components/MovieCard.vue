@@ -31,6 +31,7 @@
 
 <script>
 import axios from "axios";
+import CheckPoster from "../methods/CheckPoster";
 
 export default {
   name: "MovieCard",
@@ -102,7 +103,10 @@ export default {
       content.style.scrollBehavior = "auto";
     },
     doesMovieHavePoster: function(poster) {
-      return poster.match(/http/) ? poster : this.placeholder;
+      return CheckPoster(
+        poster,
+        `${window.location.origin}/poster-placeholder.jpg`
+      );
     }
   },
   computed: {
