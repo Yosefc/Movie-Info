@@ -156,12 +156,12 @@ main {
   text-align: center;
   padding: 15px 15px 5px 15px;
   font-size: 0.9rem;
-  width: 400px;
+  width: 300px;
   overflow-wrap: break-word;
 }
 
 .result h2 {
-  margin: 5px 0px 0px 0px;
+  margin: 5px 0px 0px 20px;
 }
 
 .result a {
@@ -183,6 +183,7 @@ main {
   height: 100%;
   object-fit: scale-down;
   margin: auto;
+  margin-right: 20px;
 }
 
 .pagination {
